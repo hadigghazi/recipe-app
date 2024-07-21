@@ -4,18 +4,14 @@ header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Content-Type: application/json");
 
-include 'db.php';
 session_start();
-$sql = "SELECT * FROM recipes";
-$result = $conn->query($sql);
+include 'db.php';
 
-$recipes = array();
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        $recipes[] = $row;
-    }
+if (isset($_SESSION['user_id'])) {
+    echo json_encode(['user_id' => $_SESSION['user_id']]);
+} else {
+    echo json_encode(['user_id' => null]);
 }
-echo json_encode($recipes);
 
 $conn->close();
 ?>

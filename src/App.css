@@ -1,277 +1,69 @@
-/* base.css */
-
-:root {
-  --color-primary: #f38e82;
-  --color-grad-1: #fbdb89;
-  --color-grad-2: #f48982;
-
-  --color-grey-light-1: #f9f5f3;
-  --color-grey-light-2: #f2efee;
-  --color-grey-light-3: #d3c7c3;
-  --color-grey-dark-1: #615551;
-  --color-grey-dark-2: #918581;
-
-  --gradient: linear-gradient(to right bottom, var(--color-grad-1), var(--color-grad-2));
-
-  --bp-large: 78.15em; /* 1250px */
-  --bp-medium: 61.25em; /* 980px */
-  --bp-small: 37.5em; /* 600px */
-  --bp-smallest: 31.25em; /* 500px */
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  font-size: 62.5%;
-}
-
-@media only screen and (max-width: var(--bp-medium)) {
-  html {
-    font-size: 50%;
-  }
-}
-
+/* General styles for the body */
 body {
-  font-family: 'Nunito Sans', sans-serif;
-  font-weight: 400;
-  line-height: 1.6;
-  color: var(--color-grey-dark-1);
-  background: var(--gradient);
-  background-size: cover;
-  background-repeat: no-repeat;
-  min-height: calc(100vh - 2 * 4vw);
-}
-
-/* components.css */
-
-.btn {
-  background: var(--gradient);
-  border-radius: 10rem;
-  border: none;
-  text-transform: uppercase;
-  color: #fff;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  padding: 1.5rem 4rem;
-  font-size: 1.5rem;
-  font-weight: 600;
-  transition: all 0.2s;
-}
-
-.btn:hover {
-  transform: scale(1.05);
-}
-
-.btn:focus {
-  outline: none;
-}
-
-.btn > *:first-child {
-  margin-right: 1rem;
-}
-
-.btn--small {
-  background: var(--gradient);
-  border-radius: 10rem;
-  border: none;
-  text-transform: uppercase;
-  color: #fff;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  padding: 1.25rem 2.25rem;
-  font-size: 1.4rem;
-  font-weight: 600;
-  transition: all 0.2s;
-}
-
-.btn--small:hover {
-  transform: scale(1.05);
-}
-
-.btn--small:focus {
-  outline: none;
-}
-
-.btn--small > *:first-child {
-  margin-right: 1rem;
-}
-
-.heading--2 {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--color-primary);
-  text-transform: uppercase;
-  margin-bottom: 2.5rem;
-  text-align: center;
-}
-
-/* header.css */
-
-.header {
-  grid-area: head;
-  background-color: var(--color-grey-light-1);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.header__logo {
-  margin-left: 4rem;
-  height: 4.6rem; /* Adjust as needed */
-}
-
-/* RecipePage.css */
-
-.recipe-page {
-  padding: 20px;
-  max-width: 800px;
-  margin: auto;
+  margin: 0;
   font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
 }
 
-.recipe-title {
-  font-size: 2em;
-  margin-bottom: 0.5em;
-}
-
-.ingredient-list,
-.steps-list {
-  margin: 1em 0;
-  padding: 0;
-  list-style-type: none;
-}
-
-.ingredient-item,
-.step-item {
-  margin: 0.5em 0;
-  font-size: 1.2em;
-}
-
-.edit-link {
-  display: inline-block;
-  margin-top: 1em;
+/* Navbar styles */
+.header {
+  background-color: #4a90e2;
+  color: #fff;
   padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
+}
+
+.header ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header ul li {
+  margin: 0 15px;
+}
+
+.header ul li a,
+.header ul li button {
+  color: #fff;
   text-decoration: none;
-  border-radius: 5px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
 }
 
-.edit-link:hover {
-  background-color: #0056b3;
+.header ul li a:hover,
+.header ul li button:hover {
+  background-color: #357ABD;
 }
 
-.loading,
-.error,
-.not-found {
-  text-align: center;
-  font-size: 1.2em;
-  margin-top: 2em;
-}
-
-.recipe-page {
-  padding: 20px;
-  max-width: 800px;
-  margin: auto;
-}
-
-.recipe-page h1 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-}
-
-.recipe-page h2 {
-  font-size: 1.5rem;
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
-
-.recipe-page ul,
-.recipe-page ol {
-  margin-bottom: 20px;
-}
-
-.star-button {
-  background-color: #ffcc00;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  margin-bottom: 20px;
-}
-
-.star-button:hover {
-  background-color: #ff9900;
-}
-
-.comments-section {
-  margin-top: 20px;
-}
-
-.comments-section h2 {
-  margin-bottom: 10px;
-}
-
-.comments-section ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.comments-section ul li {
-  background-color: #f9f9f9;
-  margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 5px;
-}
-
-.comments-section h3 {
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
-
-.comments-section textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-.comments-section button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 20px;
+/* Logout button specific styles */
+.header ul li button {
+  background: none;
   border: none;
   cursor: pointer;
+  font: inherit;
 }
 
-.comments-section button:hover {
-  background-color: #45a049;
+/* Styles for the links */
+.header ul li a {
+  background: none;
 }
 
-@media (max-width: 600px) {
-  .recipe-page {
-    padding: 10px;
+.header ul li a.active {
+  background-color: #357ABD;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .header ul {
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 
-  .recipe-page h1 {
-    font-size: 1.5rem;
-  }
-
-  .recipe-page h2 {
-    font-size: 1.2rem;
-  }
-
-  .star-button {
-    padding: 5px 10px;
-  }
-
-  .comments-section button {
-    padding: 5px 10px;
+  .header ul li {
+    margin: 5px;
   }
 }

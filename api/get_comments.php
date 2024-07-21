@@ -4,7 +4,7 @@ header("Access-Control-Allow-Methods: GET, POST, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Content-Type: application/json");
 include 'db.php';
-
+session_start();
 $recipe_id = isset($_GET['recipe_id']) ? intval($_GET['recipe_id']) : 0;
 
 if ($recipe_id <= 0) {

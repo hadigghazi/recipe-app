@@ -4,7 +4,7 @@ header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Content-Type: application/json");
 include 'db.php';
-
+session_start();
 $data = json_decode(file_get_contents('php://input'), true);
 if (json_last_error() === JSON_ERROR_NONE) {
     $recipe_id = $data['recipe_id'] ?? null;
