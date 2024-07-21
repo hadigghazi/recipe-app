@@ -5,53 +5,101 @@ import { useParams, Link } from 'react-router-dom';
 const RecipePage = () => {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [comments, setComments] = useState([]);
+  const [newComment, setNewComment] = useState('');
+  const [isStarred, setIsStarred] = useState(false);
 
   useEffect(() => {
-    const fetchRecipe = async () => {
-      try {
-        const response = await axios.get(`http://localhost/recipe-app/api/get_recipe.php?id=${id}`);
+    // Fetch recipe details
+    axios.get(`http://localhost/recipe-app/api/get_recipe.php?id=${id}`)
+      .then(response => {
         setRecipe(response.data);
-      } catch (error) {
-        setError("There was an error fetching the recipe.");
+      })
+      .catch(error => {
         console.error("There was an error fetching the recipe!", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+      });
 
-    fetchRecipe();
+    // Fetch comments for the recipe
+    axios.get(`http://localhost/recipe-app/api/get_comments.php?recipe_id=${id}`)
+      .then(response => {
+        setComments(response.data);
+      })
+      .catch(error => {
+        console.error("There was an error fetching the comments!", error);
+      });
+
+    // Check if the recipe is starred
+    const starredRecipes = JSON.parse(localStorage.getItem('starredRecipes')) || [];
+    setIsStarred(starredRecipes.includes(id));
   }, [id]);
 
-  if (loading) {
-    return <div className="loading">Loading...</div>;
-  }
+  const handleAddComment = () => {
+    if (newComment.trim() === '') return;
 
-  if (error) {
-    return <div className="error">{error}</div>;
-  }
+    axios.post('http://localhost/recipe-app/api/comments.php', {
+      recipe_id: id,
+      comment: newComment
+    })
+      .then(response => {
+        setComments([...comments, { id: response.data.id, comment: newComment }]);
+        setNewComment('');
+      })
+      .catch(error => {
+        console.error("There was an error adding the comment!", error);
+      });
+  };
+
+  const handleStarRecipe = () => {
+    const starredRecipes = JSON.parse(localStorage.getItem('starredRecipes')) || [];
+    if (starredRecipes.includes(id)) {
+      const updatedStarredRecipes = starredRecipes.filter(recipeId => recipeId !== id);
+      localStorage.setItem('starredRecipes', JSON.stringify(updatedStarredRecipes));
+      setIsStarred(false);
+    } else {
+      starredRecipes.push(id);
+      localStorage.setItem('starredRecipes', JSON.stringify(starredRecipes));
+      setIsStarred(true);
+    }
+  };
 
   if (!recipe) {
-    return <div className="not-found">Recipe not found.</div>;
+    return <div>Loading...</div>;
   }
 
   return (
     <div className="recipe-page">
-      <h1 className="recipe-title">{recipe.name}</h1>
-      <h2 className="ingredients-heading">Ingredients</h2>
-      <ul className="ingredient-list">
+      <h1>{recipe.name}</h1>
+      <h2>Ingredients</h2>
+      <ul>
         {recipe.ingredients.split(',').map((ingredient, index) => (
-          <li key={index} className="ingredient-item">{ingredient.trim()}</li>
+          <li key={index}>{ingredient}</li>
         ))}
       </ul>
-      <h2 className="steps-heading">Steps</h2>
-      <ol className="steps-list">
+      <h2>Steps</h2>
+      <ol>
         {recipe.steps.split(',').map((step, index) => (
-          <li key={index} className="step-item">{step.trim()}</li>
+          <li key={index}>{step}</li>
         ))}
       </ol>
-      <Link to={`/update/${id}`} className="edit-link btn--small">Edit Recipe</Link>
+      <button className="star-button" onClick={handleStarRecipe}>
+        {isStarred ? 'Unstar' : 'Star'} Recipe
+      </button>
+      <Link to={`/update/${id}`}>Edit Recipe</Link>
+      <div className="comments-section">
+        <h2>Comments</h2>
+        <ul>
+          {comments.map(comment => (
+            <li key={comment.id}>{comment.comment}</li>
+          ))}
+        </ul>
+        <h3>Add a Comment</h3>
+        <textarea
+          value={newComment}
+          onChange={(e) => setNewComment(e.target.value)}
+          placeholder="Add a comment"
+        ></textarea>
+        <button onClick={handleAddComment}>Add Comment</button>
+      </div>
     </div>
   );
 };

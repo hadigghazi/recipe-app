@@ -174,3 +174,104 @@ body {
   font-size: 1.2em;
   margin-top: 2em;
 }
+
+.recipe-page {
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.recipe-page h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.recipe-page h2 {
+  font-size: 1.5rem;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.recipe-page ul,
+.recipe-page ol {
+  margin-bottom: 20px;
+}
+
+.star-button {
+  background-color: #ffcc00;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.star-button:hover {
+  background-color: #ff9900;
+}
+
+.comments-section {
+  margin-top: 20px;
+}
+
+.comments-section h2 {
+  margin-bottom: 10px;
+}
+
+.comments-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.comments-section ul li {
+  background-color: #f9f9f9;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.comments-section h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.comments-section textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.comments-section button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.comments-section button:hover {
+  background-color: #45a049;
+}
+
+@media (max-width: 600px) {
+  .recipe-page {
+    padding: 10px;
+  }
+
+  .recipe-page h1 {
+    font-size: 1.5rem;
+  }
+
+  .recipe-page h2 {
+    font-size: 1.2rem;
+  }
+
+  .star-button {
+    padding: 5px 10px;
+  }
+
+  .comments-section button {
+    padding: 5px 10px;
+  }
+}
