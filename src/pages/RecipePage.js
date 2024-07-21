@@ -7,7 +7,7 @@ const RecipePage = () => {
   const [recipe, setRecipe] = useState(null);
 
   useEffect(() => {
-    axios.get(`/get_recipe.php?id=${id}`)
+    axios.get(`http://localhost/recipe-app/api/get_recipe.php?id=${id}`)
       .then(response => {
         setRecipe(response.data);
       })

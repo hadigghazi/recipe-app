@@ -15,7 +15,7 @@ const NewRecipePage = () => {
       steps: steps.split(',')
     };
 
-    axios.post('/create_recipe.php', newRecipe)
+    axios.post('http://localhost/recipe-app/api/create_recipe.php', newRecipe)
       .then(response => {
         console.log("Recipe created successfully!");
       })

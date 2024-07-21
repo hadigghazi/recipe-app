@@ -31,7 +31,7 @@ const UpdateRecipePage = () => {
       steps: steps.split(',')
     };
 
-    axios.put('/update_recipe.php', updatedRecipe)
+    axios.put('http://localhost/recipe-app/api/update_recipe.php', updatedRecipe)
       .then(response => {
         console.log("Recipe updated successfully!");
       })

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import RecipePage from './pages/RecipePage';
 import NewRecipePage from './pages/NewRecipePage';
@@ -12,12 +12,12 @@ function App() {
     <Router>
       <div className="App">
         <Navbar />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/recipe/:id" component={RecipePage} />
-          <Route path="/new" component={NewRecipePage} />
-          <Route path="/update/:id" component={UpdateRecipePage} />
-        </Switch>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/recipe/:id" element={<RecipePage />} />
+          <Route path="/new" element={<NewRecipePage />} />
+          <Route path="/update/:id" element={<UpdateRecipePage />} />
+        </Routes>
       </div>
     </Router>
   );

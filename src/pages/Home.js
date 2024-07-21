@@ -6,7 +6,7 @@ const Home = () => {
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
-    axios.get('/get_recipes.php')
+    axios.get('http://localhost/recipe-app/api/get_recipes.php')
       .then(response => {
         setRecipes(response.data);
       })
