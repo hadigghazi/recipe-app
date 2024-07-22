@@ -36,23 +36,26 @@ const LoginPage = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button type="submit">Login</button>
-      {error && <p>{error}</p>}
-      {success && <p>{success}</p>}
-    </form>
+    <div className='login-container'>
+      <form className='login-form' onSubmit={handleSubmit}>
+        <h2>Login</h2>
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit">Login</button>
+        {error && <p className='error'>{error}</p>}
+        {success && <p className='success'>{success}</p>}
+      </form>
+    </div>
   );
 };
 

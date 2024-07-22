@@ -69,8 +69,9 @@ const StarredRecipes = () => {
   };
 
   return (
-    <div>
+    <div className="starred-recipes-page">
       {error && <p>{error}</p>}
+      <h1>Starred Recipes</h1>
       <ul>
         {starredRecipes.length > 0 ? (
           starredRecipes.map(recipe => {
@@ -87,7 +88,7 @@ const StarredRecipes = () => {
             );
           })
         ) : (
-          <p>No starred recipes found.</p>
+          <p className="no-recipes">No starred recipes found.</p>
         )}
       </ul>
     </div>

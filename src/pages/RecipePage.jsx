@@ -163,7 +163,7 @@ const RecipePage = () => {
       </button>
       {isCreator && (
         <>
-          <Link to={`/update/${id}`}>Edit Recipe</Link>
+         <Link to={`/update/${id}`}> <button>Edit Recipe</button></Link>
           <button onClick={deleteRecipe}>Delete Recipe</button>
         </>
       )}

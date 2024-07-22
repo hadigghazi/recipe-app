@@ -16,12 +16,14 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Recipe List</h1>
-      <ul>
+    <div className="home-container">
+      <h1 className="home-title">Recipe List</h1>
+      <ul className="recipe-list">
         {recipes.map(recipe => (
-          <li key={recipe.id}>
-            <Link to={`/recipe/${recipe.id}`}>{recipe.name}</Link>
+          <li key={recipe.id} className="recipe-item">
+            <Link to={`/recipe/${recipe.id}`} className="recipe-link">
+              {recipe.name}
+            </Link>
           </li>
         ))}
       </ul>

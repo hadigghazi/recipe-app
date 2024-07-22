@@ -40,27 +40,30 @@ const NewRecipePage = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Recipe Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <textarea
-        placeholder="Ingredients (comma separated)"
-        value={ingredients}
-        onChange={(e) => setIngredients(e.target.value)}
-      />
-      <textarea
-        placeholder="Steps (comma separated)"
-        value={steps}
-        onChange={(e) => setSteps(e.target.value)}
-      />
-      <button type="submit">Create Recipe</button>
-      {error && <p>{error}</p>}
-      {success && <p>{success}</p>}
-    </form>
+    <div className="new-recipe-page">
+      <h1>Create New Recipe</h1>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Recipe Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <textarea
+          placeholder="Ingredients (comma separated)"
+          value={ingredients}
+          onChange={(e) => setIngredients(e.target.value)}
+        />
+        <textarea
+          placeholder="Steps (comma separated)"
+          value={steps}
+          onChange={(e) => setSteps(e.target.value)}
+        />
+        <button type="submit">Create Recipe</button>
+        {error && <p className="error">{error}</p>}
+        {success && <p className="success">{success}</p>}
+      </form>
+    </div>
   );
 };
 
