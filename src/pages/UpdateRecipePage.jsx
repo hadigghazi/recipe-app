@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
+import gsap from 'gsap';
 
 const UpdateRecipe = () => {
   const { id } = useParams();
@@ -10,6 +11,11 @@ const UpdateRecipe = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    gsap.fromTo(".update-recipe-title", 
+      { y: -100 }, 
+      { y: 0, duration: 2, ease: "bounce.out" } 
+    );
+
     const fetchRecipe = async () => {
       try {
         const response = await axios.get(`http://localhost/recipe-app/api/get_recipe.php?id=${id}`);
@@ -60,7 +66,7 @@ const UpdateRecipe = () => {
 
   return (
     <div className="update-recipe-page">
-      <h2>Update Recipe</h2>
+      <h2 className="update-recipe-title">Update Recipe</h2>
       {error && <p className="error">{error}</p>}
       {success && <p className="success">{success}</p>}
       <form onSubmit={handleSubmit}>

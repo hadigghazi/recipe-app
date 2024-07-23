@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, Link, useNavigate } from 'react-router-dom';
+import gsap from 'gsap';
 
 const RecipePage = () => {
   const { id } = useParams();
@@ -12,6 +13,11 @@ const RecipePage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    gsap.fromTo(".recipe-title", 
+      { y: -100 }, 
+      { y: 0, duration: 2, ease: "bounce.out" } 
+    );
+
     const fetchData = async () => {
       try {
         const recipeResponse = await axios.get(`http://localhost/recipe-app/api/get_recipe.php?id=${id}`);
@@ -151,7 +157,7 @@ const RecipePage = () => {
 
   return (
     <div className="recipe-page">
-      <h1>{recipe.name}</h1>
+      <h1 className="recipe-title">{recipe.name}</h1>
       <button onClick={toggleStar}>
         {isStarred ? 'Unstar' : 'Star'}
       </button>
@@ -163,7 +169,7 @@ const RecipePage = () => {
       </button>
       {isCreator && (
         <>
-         <Link to={`/update/${id}`}> <button>Edit Recipe</button></Link>
+          <Link to={`/update/${id}`}> <button>Edit Recipe</button></Link>
           <button onClick={deleteRecipe}>Delete Recipe</button>
         </>
       )}

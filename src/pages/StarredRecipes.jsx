@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import gsap from 'gsap';
 
 const StarredRecipes = () => {
   const [starredRecipes, setStarredRecipes] = useState([]);
@@ -8,6 +9,11 @@ const StarredRecipes = () => {
   const [recipeDetails, setRecipeDetails] = useState({});
 
   useEffect(() => {
+    gsap.fromTo(".starred-recipes-title", 
+      { y: -100 }, 
+      { y: 0, duration: 2, ease: "bounce.out" } 
+    );
+
     const fetchStarredRecipes = async () => {
       try {
         const userId = localStorage.getItem('user_id');
@@ -71,7 +77,7 @@ const StarredRecipes = () => {
   return (
     <div className="starred-recipes-page">
       {error && <p>{error}</p>}
-      <h1>Starred Recipes</h1>
+      <h1 className="starred-recipes-title">Starred Recipes</h1>
       <ul>
         {starredRecipes.length > 0 ? (
           starredRecipes.map(recipe => {

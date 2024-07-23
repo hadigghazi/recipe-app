@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import gsap from 'gsap';
 
 const NewRecipePage = () => {
   const [name, setName] = useState('');
@@ -7,6 +8,13 @@ const NewRecipePage = () => {
   const [steps, setSteps] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+
+  useEffect(() => {
+    gsap.fromTo(".new-recipe-title", 
+      { y: -100 }, 
+      { y: 0, duration: 2, ease: "bounce.out" } 
+    );
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -41,7 +49,7 @@ const NewRecipePage = () => {
 
   return (
     <div className="new-recipe-page">
-      <h1>Create New Recipe</h1>
+      <h1 className="new-recipe-title">Create New Recipe</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
